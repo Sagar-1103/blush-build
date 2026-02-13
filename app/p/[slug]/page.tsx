@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         openGraph: {
             title: `Hey ${page.crushName}, someone has something to tell you 💕`,
             description: page.mainMessage.slice(0, 160),
-            url: `https://blush.build/p/${slug}`,
+            url: `https://www.blush-build.xyz/p/${slug}`,
             siteName: "BlushBuild",
             images: [
                 {
@@ -38,6 +38,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             title: `Hey ${page.crushName}, someone has something to tell you 💕`,
             description: page.mainMessage.slice(0, 160),
             images: ["/landing.png"],
+        },
+        alternates: {
+            canonical: `https://www.blush-build.xyz/p/${slug}`,
         },
     };
 }

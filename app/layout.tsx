@@ -10,11 +10,15 @@ export const metadata: Metadata = {
     "Create a cute, personalized proposal or confession page for your crush. Choose a template, customize it, and share the link. 💕",
   keywords: ["proposal", "confession", "crush", "valentine", "love letter", "romantic website", "interactive card"],
   authors: [{ name: "BlushBuild" }],
-  metadataBase: new URL("https://blush.build"),
+  creator: "BlushBuild",
+  metadataBase: new URL("https://www.blush-build.xyz"),
+  alternates: {
+    canonical: "./",
+  },
   openGraph: {
     title: "BlushBuild | Build something cute. Say something real.",
     description: "Create a cute, personalized proposal or confession page for your crush. 💕",
-    url: "https://blush.build",
+    url: "https://www.blush-build.xyz",
     siteName: "BlushBuild",
     images: [
       {
@@ -38,11 +42,19 @@ export const metadata: Metadata = {
     title: "BlushBuild | Build something cute. Say something real.",
     description: "Create a cute, personalized proposal or confession page for your crush. 💕",
     images: ["/landing.png"],
+    creator: "@blushbuild",
   },
   icons: {
     icon: "/favicon-32x32.png",
     shortcut: "/logo.png",
     apple: "/logo.png",
+  },
+  appleWebApp: {
+    title: "BlushBuild",
+    statusBarStyle: "default",
+    startupImage: [
+      "/logo.png",
+    ],
   },
 };
 
@@ -70,6 +82,26 @@ export default function RootLayout({
                   y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
               })(window, document, "clarity", "script", "vgu69ohm92");
             `,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "BlushBuild",
+              "url": "https://www.blush-build.xyz",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://www.blush-build.xyz/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              },
+              "sameAs": [
+                "https://twitter.com/blushbuild",
+                "https://instagram.com/blushbuild"
+              ]
+            }),
           }}
         />
         <AuthProvider>
