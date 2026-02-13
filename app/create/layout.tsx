@@ -2,19 +2,19 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Dashboard | BlushBuild',
-    description: 'Manage your created pages, track views, and create new romantic surprises.',
+    title: 'Create Your Page | BlushBuild',
+    description: 'Design a personalized romantic page for your crush or partner. Choose templates, add music, and create magic.',
     openGraph: {
-        title: 'Dashboard | BlushBuild',
-        description: 'Manage your created pages, track views, and create new romantic surprises.',
-        url: 'https://blush.build/dashboard',
+        title: 'Create Your Page | BlushBuild',
+        description: 'Design a personalized romantic page for your crush or partner.',
+        url: 'https://blush.build/create',
         siteName: 'BlushBuild',
         images: [
             {
                 url: '/landing.png',
                 width: 1200,
                 height: 630,
-                alt: 'BlushBuild Dashboard',
+                alt: 'Create your BlushBuild page',
             },
             {
                 url: '/logo.png',
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Dashboard | BlushBuild",
-        description: "Manage your created pages, track views, and create new romantic surprises.",
+        title: "Create Your Page | BlushBuild",
+        description: "Design a personalized romantic page for your crush or partner.",
         images: ["/landing.png"],
     },
 };
 
-export default function DashboardLayout({
+export default function CreateLayout({
     children,
 }: {
     children: React.ReactNode;

@@ -7,14 +7,40 @@ export const metadata: Metadata = {
   title: "BlushBuild | Build something cute. Say something real.",
   description:
     "Create a cute, personalized proposal or confession page for your crush. Choose a template, customize it, and share the link. 💕",
-  keywords: ["proposal", "confession", "crush", "valentine", "love letter", "romantic website"],
+  keywords: ["proposal", "confession", "crush", "valentine", "love letter", "romantic website", "interactive card"],
+  authors: [{ name: "BlushBuild" }],
   openGraph: {
-    title: "BlushBuild",
-    description: "Build something cute. Say something real. 💕",
+    title: "BlushBuild | Build something cute. Say something real.",
+    description: "Create a cute, personalized proposal or confession page for your crush. 💕",
+    url: "https://blush.build",
+    siteName: "BlushBuild",
+    images: [
+      {
+        url: "/landing.png",
+        width: 1200,
+        height: 630,
+        alt: "BlushBuild Landing Preview",
+      },
+      {
+        url: "/logo.png",
+        width: 500,
+        height: 500,
+        alt: "BlushBuild Logo",
+      },
+    ],
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BlushBuild | Build something cute. Say something real.",
+    description: "Create a cute, personalized proposal or confession page for your crush. 💕",
+    images: ["/landing.png"],
   },
   icons: {
     icon: "/favicon-32x32.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
   },
 };
 

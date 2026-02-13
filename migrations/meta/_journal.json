@@ -15,6 +15,13 @@
       "when": 1770978820791,
       "tag": "0001_absurd_trauma",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1770999679195,
+      "tag": "0002_hot_harpoon",
+      "breakpoints": true
     }
   ]
 }

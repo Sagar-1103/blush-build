@@ -15,7 +15,29 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         openGraph: {
             title: `Hey ${page.crushName}, someone has something to tell you 💕`,
             description: page.mainMessage.slice(0, 160),
+            url: `https://blush.build/p/${slug}`,
+            siteName: "BlushBuild",
+            images: [
+                {
+                    url: "/landing.png",
+                    width: 1200,
+                    height: 630,
+                    alt: "A special message for you",
+                },
+                {
+                    url: "/logo.png",
+                    width: 500,
+                    height: 500,
+                    alt: "BlushBuild Logo",
+                },
+            ],
             type: "website",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: `Hey ${page.crushName}, someone has something to tell you 💕`,
+            description: page.mainMessage.slice(0, 160),
+            images: ["/landing.png"],
         },
     };
 }
