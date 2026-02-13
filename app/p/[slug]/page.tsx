@@ -64,6 +64,26 @@ export default async function PublicPage({ params }: { params: Promise<{ slug: s
 
     const templateEmoji = TEMPLATE_EMOJIS[page.templateType] || "💕";
 
+    // Structured Data for "Message" or "CreativeWork"
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Message",
+        "sender": {
+            "@type": "Person",
+            "name": "Anonymous" // We don't collect sender names publicly
+        },
+        "recipient": {
+            "@type": "Person",
+            "name": page.crushName
+        },
+        "datePublished": page.createdAt.toISOString(),
+        "text": page.mainMessage,
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://www.blush-build.xyz/p/${slug}`
+        }
+    };
+
     const pageData = {
         crushName: page.crushName,
         mainMessage: page.mainMessage,
@@ -82,5 +102,13 @@ export default async function PublicPage({ params }: { params: Promise<{ slug: s
         photos: page.photos.map((p) => p.url),
     };
 
-    return <PublicPageClient data={pageData} />;
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <PublicPageClient data={pageData} />
+        </>
+    );
 }

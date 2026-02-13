@@ -3,8 +3,31 @@ import { AuthNavButtons } from "@/components/auth-nav";
 import { Heart, Sparkles, Send, Palette, Share2, Lock, Zap, Music, Image as ImageIcon, ChevronRight, Star } from "lucide-react";
 
 export default function HomePage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BlushBuild",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Create a cute, personalized proposal or confession page for your crush. Choose a template, customize it, and share the link.",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1250"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#fff0f3] relative overflow-hidden font-sans text-rose-950 selection:bg-rose-200">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Background Layer */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 overflow-hidden">

@@ -6,8 +6,8 @@ export const metadata: Metadata = {
     description: 'Manage your created pages, track views, and create new romantic surprises.',
     openGraph: {
         title: 'Dashboard | BlushBuild',
-        description: 'Manage your created pages, track views, and create new romantic surprises.',
-        url: 'https://blush.build/dashboard',
+        description: 'Manage your created pages and view responses.',
+        url: 'https://www.blush-build.xyz/dashboard',
         siteName: 'BlushBuild',
         images: [
             {
@@ -38,5 +38,29 @@ export default function DashboardLayout({
 }: {
     children: React.ReactNode;
 }) {
-    return <>{children}</>;
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [{
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Home",
+                            "item": "https://www.blush-build.xyz"
+                        }, {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "Dashboard",
+                            "item": "https://www.blush-build.xyz/dashboard"
+                        }]
+                    })
+                }}
+            />
+            {children}
+        </>
+    );
 }
