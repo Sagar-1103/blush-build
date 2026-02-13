@@ -1,0 +1,1 @@
+ALTER TYPE "public"."unlock_type" ADD VALUE 'love-captcha';
