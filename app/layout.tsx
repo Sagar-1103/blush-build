@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/components/auth-context";
 import { AuthModal } from "@/components/auth-modal";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "BlushBuild | Build something cute. Say something real.",
@@ -57,6 +58,19 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
+        <Script
+          id="clarity-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "vgu69ohm92");
+            `,
+          }}
+        />
         <AuthProvider>
           {children}
           <AuthModal />
