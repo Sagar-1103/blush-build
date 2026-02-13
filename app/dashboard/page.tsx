@@ -11,7 +11,7 @@ import {
     ExternalLink,
     Pencil,
 } from "lucide-react";
-import { PageActionsMenu, AutoOpenShare } from "@/components/client-actions";
+import { PageActionsMenu, AutoOpenShare, ShareAppButton } from "@/components/client-actions";
 
 export const dynamic = "force-dynamic";
 
@@ -92,6 +92,7 @@ export default async function DashboardPage(props: { searchParams: Promise<{ cre
                             BlushBuild
                         </span>
                     </Link>
+                    <ShareAppButton />
                     <Link
                         href="/create"
                         className="hidden sm:flex items-center gap-2 text-sm bg-rose-500 text-white px-5 py-2.5 rounded-lg hover:bg-rose-600 transition-all hover:shadow-lg hover:shadow-rose-200/50 font-medium active:scale-95"

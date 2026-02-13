@@ -58,18 +58,20 @@ export const metadata: Metadata = {
   },
 };
 
+import { Dancing_Script, Outfit, Playfair_Display, Quicksand } from 'next/font/google';
+
+const dancingScript = Dancing_Script({ subsets: ['latin'], variable: '--font-dancing', display: 'swap' });
+const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', display: 'swap' });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' });
+const quicksand = Quicksand({ subsets: ['latin'], variable: '--font-quicksand', display: 'swap' });
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" className={`${dancingScript.variable} ${outfit.variable} ${playfair.variable} ${quicksand.variable}`}>
       <body className="font-body antialiased">
         <Script
           id="clarity-script"

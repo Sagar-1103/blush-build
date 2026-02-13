@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { AuthNavButtons } from "@/components/auth-nav";
 import { Heart, Sparkles, Send, Palette, Share2, Lock, Zap, Music, Image as ImageIcon, ChevronRight, Star } from "lucide-react";
@@ -5,21 +6,78 @@ import { Heart, Sparkles, Send, Palette, Share2, Lock, Zap, Music, Image as Imag
 export default function HomePage() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "BlushBuild",
-    "applicationCategory": "LifestyleApplication",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "description": "Create a cute, personalized proposal or confession page for your crush. Choose a template, customize it, and share the link.",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "1250"
-    }
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "BlushBuild",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Create a cute, personalized proposal or confession page for your crush. Choose a template, customize it, and share the link.",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "1250"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is BlushBuild free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! BlushBuild is 100% free to use. You can create unlimited pages for your crush or partner without paying a dime."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I customize the music?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. You can add any YouTube link to set the perfect background music for your romantic page."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": " Is it private?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can choose to password protect your page or add a nickname gate so only your special someone can access it."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "How to create a romantic page for your crush",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "name": "Choose a Template",
+            "text": "Select from our Confession, Valentine, or Proposal themes.",
+            "position": 1
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Customize Content",
+            "text": "Add your photos, heartfelt message, and background music.",
+            "position": 2
+          },
+          {
+            "@type": "HowToStep",
+            "name": "Share the Link",
+            "text": "Get a unique link or QR code to send to your special someone.",
+            "position": 3
+          }
+        ]
+      }
+    ]
   };
 
   return (
@@ -80,7 +138,7 @@ export default function HomePage() {
             </p>
 
             {/* CTA Group */}
-            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 w-full sm:w-auto pt-4 sm:pt-6 px-2 sm:px-0">
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5 w-full sm:w-auto pt-4 sm:pt-6 px-2 sm:px-0 relative z-20">
               <Link
                 href="/create"
                 className="group relative flex items-center justify-center gap-2.5 sm:gap-3 bg-gradient-to-r from-rose-600 to-pink-600 text-white w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 rounded-2xl text-base sm:text-lg md:text-xl font-bold shadow-xl shadow-rose-300/40 hover:shadow-2xl hover:shadow-rose-400/50 hover:-translate-y-1 transition-all active:scale-95 overflow-hidden"
@@ -217,7 +275,7 @@ export default function HomePage() {
           <div className="flex flex-col items-center gap-2 sm:gap-3">
             <div className="flex items-center gap-2 sm:gap-2.5 group">
               <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-rose-500 fill-rose-500 group-hover:scale-110 transition-transform" />
-              <span className="font-display font-bold text-lg sm:text-xl text-rose-800">BlushBuild</span>
+              <Link href="/?utm_source=user_page" className="font-display font-bold text-lg sm:text-xl text-rose-800 hover:underline">BlushBuild</Link>
             </div>
             <p className="text-xs sm:text-sm text-rose-600/70 text-center max-w-md font-medium px-4">
               Made with love for everyone brave enough to confess their feelings.

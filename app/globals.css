@@ -73,25 +73,32 @@
 }
 
 :root {
-  --radius: 0.75rem;
-  --background: #fffbf5;
-  --foreground: #3d2b3d;
-  --card: #ffffff;
-  --card-foreground: #3d2b3d;
-  --popover: #ffffff;
-  --popover-foreground: #3d2b3d;
-  --primary: #e11d48;
-  --primary-foreground: #ffffff;
-  --secondary: #fce7f3;
-  --secondary-foreground: #9d174d;
-  --muted: #fdf2f8;
-  --muted-foreground: #9ca3af;
-  --accent: #f3e8ff;
-  --accent-foreground: #7c3aed;
-  --destructive: #ef4444;
-  --border: #fecdd3;
-  --input: #fecdd3;
-  --ring: #f43f5e;
+  --background: 350 100% 98%; /* #fff0f5 - Very light pink */
+  --foreground: 343 45% 25%; /* #5d2332 - Darker, accessible rose */
+  --card: 0 0% 100%;
+  --card-foreground: 343 45% 25%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 343 45% 25%;
+  --primary: 343 85% 55%; /* #f43f5e - Vibrant Rose */
+  --primary-foreground: 355 100% 97%;
+  --secondary: 340 70% 90%; /* #fce7f3 - Soft pink */
+  --secondary-foreground: 343 45% 30%;
+  --muted: 340 40% 96%;
+  --muted-foreground: 343 20% 45%;
+  --accent: 340 70% 95%;
+  --accent-foreground: 343 45% 25%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 343 30% 90%;
+  --input: 343 30% 90%;
+  --ring: 343 85% 55%;
+  --radius: 1rem;
+  
+  /* Custom fonts */
+  --font-dancing: 'Dancing Script', cursive;
+  --font-outfit: 'Outfit', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+  --font-quicksand: 'Quicksand', sans-serif;
   --chart-1: #f43f5e;
   --chart-2: #ec4899;
   --chart-3: #c084fc;
