@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     "Create a cute, personalized proposal or confession page for your crush. Choose a template, customize it, and share the link. 💕",
   keywords: ["proposal", "confession", "crush", "valentine", "love letter", "romantic website", "interactive card"],
   authors: [{ name: "BlushBuild" }],
+  metadataBase: new URL("https://blush.build"),
   openGraph: {
     title: "BlushBuild | Build something cute. Say something real.",
     description: "Create a cute, personalized proposal or confession page for your crush. 💕",
