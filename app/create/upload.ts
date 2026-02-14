@@ -9,6 +9,12 @@ cloudinary.config({
 });
 
 export async function uploadImage(formData: FormData) {
+    const { getUserFromCookie } = await import("@/lib/auth");
+    const user = await getUserFromCookie();
+    if (!user) {
+        throw new Error("Authentication required");
+    }
+
     const file = formData.get("file") as File;
     if (!file) {
         throw new Error("No file uploaded");

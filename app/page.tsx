@@ -96,18 +96,17 @@ export default function HomePage() {
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-50 bg-white/60 backdrop-blur-xl border-b border-rose-100/50 sticky top-0">
-        <div className="flex items-center justify-between px-3 sm:px-6 py-3 sm:py-4 max-w-7xl mx-auto">
-          <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group shrink-0">
-            <div className="relative">
-              <Heart className="w-6 h-6 sm:w-8 sm:h-8 text-rose-500 fill-rose-500 group-hover:scale-110 transition-transform duration-300" />
-              <div className="absolute inset-0 bg-rose-400 blur-xl opacity-30 group-hover:opacity-50 transition-opacity" />
+      <nav className="relative z-50 bg-white/70 backdrop-blur-md border-b border-rose-100/50 sticky top-0">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="bg-rose-100 p-2 rounded-xl group-hover:bg-rose-200 transition-colors">
+              <Heart className="w-5 h-5 text-rose-500 fill-rose-500" />
             </div>
-            <span className="text-lg sm:text-2xl font-bold font-display tracking-tight bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
+            <span className="font-display font-bold text-rose-900 text-xl tracking-tight">
               BlushBuild
             </span>
           </Link>
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-2">
             <AuthNavButtons />
           </div>
         </div>

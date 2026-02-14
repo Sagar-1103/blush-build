@@ -20,6 +20,7 @@ import {
     Music,
     Image as ImageIcon,
     Lock,
+    Loader2,
 } from "lucide-react";
 
 // Template definitions
@@ -80,6 +81,8 @@ export default function CreatePage() {
         captchaImages: [],
     });
 
+    const [fileCache, setFileCache] = useState<Record<string, File>>({});
+
     const updateField = useCallback(
         <K extends keyof FormData>(key: K, value: FormData[K]) => {
             setFormData((prev) => ({ ...prev, [key]: value }));
@@ -90,16 +93,44 @@ export default function CreatePage() {
     const doPublish = async () => {
         setIsSubmitting(true);
         try {
+            const { uploadImage } = await import("./upload");
+
+            // Process photos
+            const processedPhotos = await Promise.all(
+                formData.photos.map(async (url) => {
+                    if (fileCache[url]) {
+                        const data = new FormData();
+                        data.append("file", fileCache[url]);
+                        return await uploadImage(data);
+                    }
+                    return url;
+                })
+            );
+
+            // Process captcha images
+            const processedCaptchas = await Promise.all(
+                formData.captchaImages.map(async (url) => {
+                    if (fileCache[url]) {
+                        const data = new FormData();
+                        data.append("file", fileCache[url]);
+                        return await uploadImage(data);
+                    }
+                    return url;
+                })
+            );
+
             const result = await createPage({
                 ...formData,
+                photos: processedPhotos,
                 subMessage: formData.subMessage || undefined,
                 musicUrl: formData.musicUrl || undefined,
                 unlockValue: formData.unlockValue || undefined,
-                captchaImages: formData.unlockType === "love-captcha" ? formData.captchaImages : undefined,
+                captchaImages: formData.unlockType === "love-captcha" ? processedCaptchas : undefined,
             });
             router.push(`/dashboard?created=${result.slug}`);
         } catch (error) {
             console.error("Failed to create page:", error);
+            alert("Failed to publish page. Please try again.");
             setIsSubmitting(false);
         }
     };
@@ -196,9 +227,21 @@ export default function CreatePage() {
                 <div className="max-w-5xl mx-auto">
                     {step === 1 && <StepTemplate formData={formData} updateField={updateField} />}
                     {step === 2 && (
-                        <StepContent formData={formData} updateField={updateField} showPreview={showPreview} setShowPreview={setShowPreview} />
+                        <StepContent
+                            formData={formData}
+                            updateField={updateField}
+                            showPreview={showPreview}
+                            setShowPreview={setShowPreview}
+                            addFile={(url, file) => setFileCache(prev => ({ ...prev, [url]: file }))}
+                        />
                     )}
-                    {step === 3 && <StepButtons formData={formData} updateField={updateField} />}
+                    {step === 3 && (
+                        <StepButtons
+                            formData={formData}
+                            updateField={updateField}
+                            addFile={(url, file) => setFileCache(prev => ({ ...prev, [url]: file }))}
+                        />
+                    )}
                 </div>
 
                 {/* Footer Navigation */}
@@ -313,13 +356,24 @@ function StepContent({
     updateField,
     showPreview,
     setShowPreview,
+    addFile,
 }: {
     formData: FormData;
     updateField: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
     showPreview: boolean;
     setShowPreview: (v: boolean) => void;
+    addFile: (url: string, file: File) => void;
 }) {
     const selectedTemplate = TEMPLATES.find((t) => t.id === formData.templateType);
+
+    const onFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.[0]) {
+            const file = e.target.files[0];
+            const url = URL.createObjectURL(file);
+            addFile(url, file);
+            updateField("photos", [...formData.photos, url]);
+        }
+    };
 
     return (
         <div className="animate-fade-in-up pb-20">
@@ -449,21 +503,7 @@ function StepContent({
                                         type="file"
                                         accept="image/*"
                                         className="hidden"
-                                        onChange={async (e) => {
-                                            if (e.target.files?.[0]) {
-                                                const file = e.target.files[0];
-                                                const data = new FormData();
-                                                data.append("file", file);
-                                                try {
-                                                    const { uploadImage } = await import("./upload");
-                                                    const url = await uploadImage(data);
-                                                    updateField("photos", [...formData.photos, url]);
-                                                } catch (err) {
-                                                    console.error("Upload failed", err);
-                                                    alert("Failed to upload image.");
-                                                }
-                                            }
-                                        }}
+                                        onChange={onFileSelect}
                                     />
                                     <span className="text-2xl group-hover:scale-110 transition-transform">+</span>
                                 </label>
@@ -578,10 +618,22 @@ function TemplatePreview({ formData, selectedTemplate }: { formData: FormData; s
 function StepButtons({
     formData,
     updateField,
+    addFile,
 }: {
     formData: FormData;
     updateField: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
+    addFile: (url: string, file: File) => void;
 }) {
+
+    const onCaptchaFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.[0]) {
+            const file = e.target.files[0];
+            const url = URL.createObjectURL(file);
+            addFile(url, file);
+            updateField("captchaImages", [...formData.captchaImages, url]);
+        }
+    };
+
     return (
         <div className="animate-fade-in-up max-w-2xl mx-auto pb-20">
             <div className="text-center mb-10">
@@ -693,21 +745,7 @@ function StepButtons({
                                             type="file"
                                             accept="image/*"
                                             className="hidden"
-                                            onChange={async (e) => {
-                                                if (e.target.files?.[0]) {
-                                                    const file = e.target.files[0];
-                                                    const data = new FormData();
-                                                    data.append("file", file);
-                                                    try {
-                                                        const { uploadImage } = await import("./upload");
-                                                        const url = await uploadImage(data);
-                                                        updateField("captchaImages", [...formData.captchaImages, url]);
-                                                    } catch (err) {
-                                                        console.error("Upload failed", err);
-                                                        alert("Failed to upload image.");
-                                                    }
-                                                }
-                                            }}
+                                            onChange={onCaptchaFileSelect}
                                         />
                                         <span className="text-xl font-bold">+</span>
                                     </label>

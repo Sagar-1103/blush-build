@@ -47,7 +47,7 @@ export function DeleteButton({ pageId }: { pageId: string }) {
                     )}
                 </button>
             </AlertDialogTrigger>
-            <AlertDialogContent className="rounded-3xl border-rose-100 bg-white/95 backdrop-blur-xl shadow-2xl max-w-[400px]">
+            <AlertDialogContent className="rounded-3xl border-rose-100 bg-white/95 backdrop-blur-xl shadow-2xl w-[90%] max-w-[400px]">
                 <AlertDialogHeader>
                     <AlertDialogTitle className="text-xl font-display font-bold text-rose-950 flex items-center gap-2">
                         Delete this page? <span className="text-lg">💔</span>
@@ -183,7 +183,7 @@ export function PageActionsMenu({ pageId, slug, crushName }: { pageId: string; s
 
             {/* Delete Alert Dialog */}
             <AlertDialog open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
-                <AlertDialogContent className="rounded-3xl border-rose-100 bg-white/95 backdrop-blur-xl shadow-2xl max-w-[400px]">
+                <AlertDialogContent className="rounded-3xl border-rose-100 bg-white/95 backdrop-blur-xl shadow-2xl w-[90%] max-w-[400px]">
                     <AlertDialogHeader>
                         <AlertDialogTitle className="text-xl font-display font-bold text-rose-950 flex items-center gap-2">
                             Delete this page? <span className="text-lg">💔</span>

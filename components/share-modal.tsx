@@ -30,11 +30,11 @@ export function ShareModal({
 
     return (
         <Dialog open={true} onOpenChange={(open: boolean) => !open && onClose()}>
-            <DialogContent showCloseButton={false} className="max-w-md w-[95%] p-0 overflow-hidden bg-white/95 backdrop-blur-xl border-rose-100 shadow-2xl rounded-3xl outline-none">
-                <div className="flex flex-col">
+            <DialogContent showCloseButton={false} className="max-w-md w-[90%] p-0 overflow-hidden bg-white/95 backdrop-blur-xl border-rose-100 shadow-2xl rounded-2xl sm:rounded-3xl outline-none">
+                <div className="flex flex-col w-full min-w-0">
 
                     {/* Header */}
-                    <div className="px-6 py-4 border-b border-rose-100/50 bg-white/60 flex items-center justify-between shrink-0 relative z-50">
+                    <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-rose-100/50 bg-white/60 flex items-center justify-between shrink-0 relative z-50">
                         <DialogTitle className="flex items-center gap-2 text-lg font-display font-bold text-rose-950">
                             <Sparkles className="w-4 h-4 text-rose-500 fill-rose-500" />
                             Share Your Page
@@ -49,15 +49,15 @@ export function ShareModal({
                     </div>
 
                     {/* Content */}
-                    <div className="p-6 space-y-6">
+                    <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
 
                         {/* Decorative section */}
-                        <div className="text-center py-6 bg-[#fff0f3] rounded-2xl border border-rose-100">
+                        <div className="text-center py-6 px-3 sm:px-4 bg-[#fff0f3] rounded-2xl border border-rose-100">
                             <div className="text-5xl mb-3">💌</div>
-                            <p className="text-rose-900 font-display font-bold text-lg">
+                            <p className="text-rose-900 font-display font-bold text-lg break-words whitespace-normal leading-tight">
                                 For {crushName}
                             </p>
-                            <p className="text-rose-500/70 text-sm mt-1">
+                            <p className="text-rose-500/70 text-sm mt-2 px-1 break-words whitespace-normal leading-relaxed">
                                 Your page is live and ready to share!
                             </p>
                         </div>
@@ -68,7 +68,7 @@ export function ShareModal({
                                 Page Link
                             </label>
                             <div className="flex items-center gap-2 bg-white rounded-xl p-1.5 pl-4 border border-rose-100 shadow-sm focus-within:ring-2 focus-within:ring-rose-200 transition-all">
-                                <span className="text-sm text-slate-700 truncate flex-1 font-mono">{url}</span>
+                                <span className="text-sm text-slate-700 truncate flex-1 font-mono min-w-0">{url}</span>
                                 <button
                                     onClick={handleCopy}
                                     className={cn(
@@ -84,7 +84,7 @@ export function ShareModal({
                     </div>
 
                     {/* Footer */}
-                    <div className="px-6 pb-6">
+                    <div className="px-4 pb-4 sm:px-6 sm:pb-6">
                         <a
                             href={url}
                             target="_blank"
